@@ -7,7 +7,7 @@ project (BrounovMovement)
 
 find_package(SFML 2.5 REQUIRED COMPONENTS network audio graphics window system)
 
-add_executable (main "main.cpp" "Particle.cpp" "Particle.h" "Canvas.cpp" "Canvas.h")
+add_executable (main WIN32 "main.cpp" "Particle.cpp" "Particle.h" "Canvas.cpp" "Canvas.h")
 
 
 target_link_libraries(main PRIVATE Freetype OpenAL OpenGL Vorbis sfml-graphics sfml-main sfml-system sfml-window)
