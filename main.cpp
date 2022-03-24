@@ -17,7 +17,7 @@ int main()
 
 	sf::VertexArray line(sf::Lines, 2);
 	line[0].color = sf::Color::White;
-	line[1].color = sf::Color::Red;
+	line[1].color = sf::Color::Blue;
 
 	srand(time(0));
 
