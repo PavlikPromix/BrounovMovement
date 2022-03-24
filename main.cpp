@@ -1,6 +1,7 @@
 ﻿
 #include "Canvas.h"
 #include <thread>
+#include <ctime>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ int main()
 	line[0].color = sf::Color::White;
 	line[1].color = sf::Color::Red;
 
+	srand(time(0));
 
 	bool firstClick = true;
 
@@ -28,15 +30,22 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left)
+			if (event.type == sf::Event::MouseButtonPressed)
 			{
-				if (firstClick)
+				if (event.mouseButton.button == sf::Mouse::Button::Left)
 				{
-					firstClick = !firstClick;
-					mainCanvas.CreateParticle((float)event.mouseButton.x, (float)event.mouseButton.y, { 0.0f, 0.0f });
-					float x = (float)event.mouseButton.x;
-					float y = (float)event.mouseButton.y;
-					line[0].position = sf::Vector2f(x, y);
+					if (firstClick)
+					{
+						firstClick = !firstClick;
+						float x = (float)event.mouseButton.x;
+						float y = (float)event.mouseButton.y;
+						mainCanvas.CreateParticle(x, y, { 0.0f, 0.0f });
+						line[0].position = sf::Vector2f(x, y);
+					}
+				}
+				else if (event.mouseButton.button == sf::Mouse::Button::Right)
+				{
+					mainCanvas.CreateParticle((float)event.mouseButton.x, (float)event.mouseButton.y, { (float)rand() / RAND_MAX, (float)rand() / RAND_MAX });
 				}
 			}
 			if (event.type == sf::Event::MouseMoved)
@@ -56,6 +65,10 @@ int main()
 				mainCanvas.Particles.back().Vel = { vx / 60, vy / 60 };
 				line[0].position = sf::Vector2f(0, 0);
 				line[1].position = sf::Vector2f(0, 0);
+			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+			{
+				mainCanvas.Particles.clear();
 			}
 		}
 		window.clear(sf::Color::Black);
