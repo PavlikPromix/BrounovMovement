@@ -1,7 +1,5 @@
 # BrounovMovement
 
----
-
 ![image-preview](https://i.imgur.com/cCqbTVi.png)
 
 - `Press & drag` left mouse button to create a new particle with defined velocity
