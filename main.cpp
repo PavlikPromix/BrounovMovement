@@ -12,8 +12,6 @@ int main()
 	window.setFramerateLimit(144);
 
 	Canvas mainCanvas = Canvas();
-	mainCanvas.CreateParticle(200, 300, sf::Vector2f(1.0f, 0.5f));
-	mainCanvas.CreateParticle(200, 200, sf::Vector2f(1.0f, 0.7f));
 
 	sf::VertexArray line(sf::Lines, 2);
 	line[0].color = sf::Color::White;
